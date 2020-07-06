@@ -1,0 +1,36 @@
+// Complete the isValid function below.
+string isValid(string s) {
+map <char,int> mp;
+int n=s.size();
+for (int i=0;i<n;i++)
+{
+    mp[s[i]]++;
+}
+map<int,int>fin;
+for (auto itr:mp)
+{  
+fin[itr.second]++;
+}
+if (fin.size()>2)
+return "NO";
+if (fin.size()==1 || fin.size()==0)
+return "YES";
+else
+{
+int temp=0,count=0;
+for (auto itr1:fin)
+{
+     if (itr1.second==1 && itr1.first==1)
+     return "YES";
+
+    if (count==1 && itr1.second==1)
+    {
+        if (itr1.first==temp+1 || temp==itr1.first+1)
+        return "YES";
+    }
+count++;
+temp= itr1.first;
+}
+}
+return "NO";
+}
